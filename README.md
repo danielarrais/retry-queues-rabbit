@@ -10,5 +10,7 @@ Implementing a retry flow for rabbitmq for messages coming from a fanout exchang
 
 To use DLQ Routing for create a retry system using the native resources of rabbitmq:
 
+<br/>
 
-![image](https://github.com/danielarrais/retry-queues-rabbit/assets/28496479/b58950e8-5af9-4aa6-a0bf-fe413e4f8878)
+![image](https://github.com/danielarrais/retry-queues-rabbit/assets/28496479/f9f475df-a7e4-4b00-91f5-533e51b2153e)
+
