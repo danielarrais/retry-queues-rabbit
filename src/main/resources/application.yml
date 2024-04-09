@@ -1,0 +1,41 @@
+server:
+  port: ${SERVER_PORT:8080}
+broker:
+  exchanges:
+    retry-exchange:
+      name: retry.exchange
+    retry-exchange-wait:
+      name: retry.exchange.wait
+  queues:
+    retry-queue-sample:
+      name: retry.queue
+      exchange: ${broker.exchanges.retry-exchange.name}
+      wait-queue:
+        name: ${broker.queues.retry-queue-sample.name}.wait
+        exchange: ${broker.exchanges.retry-exchange-wait.name}
+        ttl: 10000
+      dead-letter-queue:
+        name: ${broker.queues.retry-queue-sample.name}.deadLetter
+    retry-two-queue-sample:
+      name: retry-two.queue
+      exchange: ${broker.exchanges.retry-exchange.name}
+      wait-queue:
+        name: ${broker.queues.retry-two-queue-sample.name}.wait
+        exchange: ${broker.exchanges.retry-exchange-wait.name}
+        ttl: 10000
+      dead-letter-queue:
+        name: ${broker.queues.retry-two-queue-sample.name}.deadLetter
+
+
+spring:
+  rabbitmq:
+    host: ${RABBITMQ_ADDRESS:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:admin}
+    password: ${RABBITMQ_PASSWORD:admin}
+    ssl:
+      enabled: false
+    virtual-host: ${RABBITMQ_VHOST:/}
+    listener:
+      simple:
+        default-requeue-rejected: false

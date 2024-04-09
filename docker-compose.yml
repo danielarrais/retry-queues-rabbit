@@ -1,0 +1,20 @@
+version: "3"
+
+
+services:
+    rabbit:
+        image: rabbitmq:3.8.18-management-alpine
+        hostname: 'rabbit'
+        restart: always
+        ports:
+            - "5672:5672"
+            - "8070:15672"
+        environment:
+            RABBITMQ_VHOST: /
+            RABBITMQ_DEFAULT_USER: admin
+            RABBITMQ_DEFAULT_PASS: admin
+        networks: 
+            - vpc
+networks:
+    vpc:
+        driver: bridge
